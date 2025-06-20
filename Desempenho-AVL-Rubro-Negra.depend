@@ -1,0 +1,49 @@
+# depslib dependency file v1.0
+1747776091 source:f:\projects\desempenho-avl-rubro-negra\arvoreavl.c
+	<stdio.h>
+	<stdlib.h>
+	"arvoreAVL.h"
+
+1750439270 f:\projects\desempenho-avl-rubro-negra\arvoreavl.h
+
+1748364685 source:f:\projects\desempenho-avl-rubro-negra\arvorellrb.c
+	<stdio.h>
+	<stdlib.h>
+	"arvoreLLRB.h"
+
+1750439272 f:\projects\desempenho-avl-rubro-negra\arvorellrb.h
+
+1750399794 source:f:\projects\desempenho-avl-rubro-negra\dynamic-menu.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<stdbool.h>
+	"dynamic-menu.h"
+	"colors-menu.h"
+
+1750226776 f:\projects\desempenho-avl-rubro-negra\dynamic-menu.h
+	<stdbool.h>
+	<conio.h>
+	<windows.h>
+	<termios.h>
+	<unistd.h>
+
+1750226168 f:\projects\desempenho-avl-rubro-negra\colors-menu.h
+
+1750439828 source:f:\projects\desempenho-avl-rubro-negra\main.c
+	<stdio.h>
+	<stdlib.h>
+	"dynamic-menu.h"
+	"colors-menu.h"
+	"teste-desempenho.h"
+
+1750439970 f:\projects\desempenho-avl-rubro-negra\teste-desempenho.h
+
+1750440027 source:f:\projects\desempenho-avl-rubro-negra\teste-desempenho.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"dynamic-menu.h"
+	"colors-menu.h"
+	"teste-desempenho.h"
+
