@@ -55,3 +55,14 @@ int call_menu_RN(){
     return 0;
 }
 
+void print_funcionario(Funcionario func){
+    printf("\n------------------------------");
+    printf("\nCodigo: %d", func.codigo);
+    printf("\nNome: %s", func.nome);
+    printf("\nIdade: %d", func.idade);
+    printf("\nEmpresa: %s", func.empresa);
+    printf("\nDepartamento: %s", func.departamento);
+    printf("\nSalario: R$ %.2f", func.salario);
+    printf("\n------------------------------\n");
+}
+
