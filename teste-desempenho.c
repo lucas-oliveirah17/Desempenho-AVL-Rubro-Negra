@@ -28,6 +28,10 @@ int call_menu_AVL(){
         gapMenu
     );
 
+    if(arquivo_nao_existe("massaDadosOrdenado.csv")){
+        disable_item(&menu, "Teste Ordenado");
+    }
+
     run_menu(&menu);
     return 0;
 }
@@ -51,6 +55,10 @@ int call_menu_RN(){
         gapMenu
     );
 
+    if(arquivo_nao_existe("massaDadosOrdenado.csv")){
+        disable_item(&menu, "Teste Ordenado");
+    }
+
     run_menu(&menu);
     return 0;
 }
@@ -66,3 +74,14 @@ void print_funcionario(Funcionario func){
     printf("\n------------------------------\n");
 }
 
+StatusOP arquivo_nao_existe(char* nome_arquivo){
+    FILE *arquivo;
+    arquivo = (fopen(nome_arquivo, "r"));
+    if(arquivo == NULL){
+        return ARQUIVO_NAO_ENCONTRADO;
+    }
+    else {
+        fclose(arquivo);
+        return ARQUIVO_ENCONTRADO;
+    }
+}

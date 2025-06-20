@@ -30,14 +30,14 @@
 
 1750226168 f:\projects\desempenho-avl-rubro-negra\colors-menu.h
 
-1750441047 source:f:\projects\desempenho-avl-rubro-negra\main.c
+1750441238 source:f:\projects\desempenho-avl-rubro-negra\main.c
 	<stdio.h>
 	<stdlib.h>
 	"dynamic-menu.h"
 	"colors-menu.h"
 	"teste-desempenho.h"
 
-1750441219 f:\projects\desempenho-avl-rubro-negra\teste-desempenho.h
+1750442313 f:\projects\desempenho-avl-rubro-negra\teste-desempenho.h
 
 1750441163 source:f:\projects\desempenho-avl-rubro-negra\teste-desempenho.c
 	<stdio.h>
