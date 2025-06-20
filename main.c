@@ -14,7 +14,9 @@ int main()
 //    f.empresa = "Google";
 //    f.salario = 3254.56;
 //    print_funcionario(f);
-//    system("PAUSE");
+    teste_arvore_AVL(ARQUIVO_DESORDENADO);
+
+    system("PAUSE");
 
     ItemMenu itemMainMenu[] = {
         {.label = "Arvore AVL", .action = call_menu_AVL},
