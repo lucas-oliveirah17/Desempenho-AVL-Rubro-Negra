@@ -5,6 +5,7 @@
 #include "dynamic-menu.h"
 #include "colors-menu.h"
 #include "teste-desempenho.h"
+#include "arvoreAVL.h"
 
 // Funções para teste
 int functionTest1(){printf("Option 1 selected.\n"); system("PAUSE"); return 0;}
@@ -90,11 +91,15 @@ StatusOP arquivo_nao_existe(char* nome_arquivo){
 StatusOP teste_arvore_AVL(char* nome_arquivo){
     FILE *arquivo;
     Funcionario funcionario;
+    int numeroFuncionario = 0;
 
-    struct timeval tempo_inicio, tempo_fim;
-    double tempo_medido;
+    arvAVL *arvoreAVL;
+    arvoreAVL = cria_arvAVL();
 
-    gettimeofday(&tempo_inicio, NULL);
+    struct timeval tempoInicio, tempoFim;
+    double tempoMedido;
+
+    gettimeofday(&tempoInicio, NULL);
 
     arquivo = (fopen(nome_arquivo, "r"));
     if(arquivo == NULL){
@@ -115,15 +120,28 @@ StatusOP teste_arvore_AVL(char* nome_arquivo){
         strcpy(funcionario.departamento, strtok(NULL, ";"));
         funcionario.salario = atof(strtok(NULL, "\n"));
 
-        print_funcionario(funcionario);
-        system("PAUSE");
-    }
+        numeroFuncionario++;
+        //print_funcionario(funcionario);
 
-    gettimeofday(&tempo_fim, NULL);
-    tempo_medido = (tempo_fim.tv_sec + tempo_fim.tv_usec/1000000.0) -
-            (tempo_inicio.tv_sec + tempo_inicio.tv_usec/1000000.0);
+        insere_arvAVL(arvoreAVL, funcionario);
+        if(numeroFuncionario == 10) {
+            printf("\nInsercao concluida!\n");
+            system("PAUSE");
+            break;
+        }
+    }
+    emOrdem_arvAVL(arvoreAVL);
+    system("PAUSE");
+
+    gettimeofday(&tempoFim, NULL);
+    tempoMedido = (tempoFim.tv_sec + tempoFim.tv_usec/1000000.0) -
+            (tempoInicio.tv_sec + tempoInicio.tv_usec/1000000.0);
+
+    printf("\nTempo decorrido: %lfs\n", tempoMedido);
+    system("PAUSE");
 
     fclose(arquivo);
+    liberar_arvAVL(arvoreAVL);
 
     return OPERACAO_CONCLUIDA;
 }
