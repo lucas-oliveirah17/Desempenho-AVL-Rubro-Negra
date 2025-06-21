@@ -194,15 +194,33 @@ StatusOP liberar_arvore(Arvore arvore, void *estrutura){
 
 Funcionario carregar_funcionario(char *linha){
     Funcionario funcionario;
+    char* token;
 
     funcionario.codigo = atoi(strtok(linha, ";"));
-    strcpy(funcionario.nome, strtok(NULL, ";"));
+
+    token = strtok(NULL, ";");
+    funcionario.nome = malloc(strlen(token) + 1);
+    strcpy(funcionario.nome, token);
+
     funcionario.idade = atoi(strtok(NULL, ";"));
-    strcpy(funcionario.empresa, strtok(NULL, ";"));
-    strcpy(funcionario.departamento, strtok(NULL, ";"));
+
+    token = strtok(NULL, ";");
+    funcionario.empresa = malloc(strlen(token) + 1);
+    strcpy(funcionario.empresa, token);
+
+    token = strtok(NULL, ";");
+    funcionario.departamento = malloc(strlen(token) + 1);
+    strcpy(funcionario.departamento, token);
+
     funcionario.salario = atof(strtok(NULL, "\n"));
 
     return funcionario;
+}
+
+void liberar_funcionario(Funcionario funcionario) {
+    free(funcionario.nome);
+    free(funcionario.empresa);
+    free(funcionario.departamento);
 }
 
 StatusOP arquivo_nao_existe(const char* nome_arquivo){

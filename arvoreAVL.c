@@ -44,10 +44,10 @@ void libera_NO(struct NO_AVL *no){
     // direitos
     libera_NO(no->esq);
     libera_NO(no->dir);
-    free(no);
 
-    // Armazena NULL em nó para não termos problemas.
-    no = NULL; // Não entendi
+    liberar_funcionario(no->dados);
+
+    free(no);
 }
 
 int vazia_arvAVL(arvAVL *raiz){

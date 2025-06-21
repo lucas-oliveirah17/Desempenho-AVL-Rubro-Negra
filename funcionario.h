@@ -5,10 +5,10 @@
 
 typedef struct Funcionario {
     int codigo;
-    char nome[100];
+    char* nome;
     int idade;
-    char empresa[100];
-    char departamento[50];
+    char* empresa;
+    char* departamento;
     float salario;
 } Funcionario;
 

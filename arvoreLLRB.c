@@ -46,10 +46,10 @@ void libera_NO_LLRB(struct NO_LLRB *no){
     // direitos
     libera_NO_LLRB(no->esq);
     libera_NO_LLRB(no->dir);
-    free(no);
 
-    // Armazena NULL em nó para não termos problemas.
-    no = NULL; // Não entendi
+    liberar_funcionario(no->dados);
+
+    free(no);
 }
 
 int vazia_arvoreLLRB(arvoreLLRB *raiz){

@@ -39,6 +39,7 @@ StatusOP salvar_dados(Arvore arvore, void *estrutura, char* header, int quantida
 
 StatusOP arquivo_nao_existe(const char* nome_arquivo);
 Funcionario carregar_funcionario(char *linha);
+void liberar_funcionario(Funcionario funcionario);
 void print_funcionario(Funcionario func);
 
 void countingSort(Funcionario *funcionario, int numElementos);
