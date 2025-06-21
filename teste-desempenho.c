@@ -10,15 +10,11 @@
 #include "teste-desempenho.h"
 #include "funcionario.h"
 
-// Funções para teste
-int functionTest1(){printf("Option 1 selected.\n"); system("PAUSE"); return 0;}
-int functionTest2(){printf("Option 2 selected.\n"); system("PAUSE"); return 0;}
-
 int call_menu_AVL(){
     Menu menu;
     ItemMenu itemMenu[] = {
-        {.label = "Teste Desordenado", .action = wrapper_AVL_desordenado},
-        {.label = "Teste Ordenado", .action = wrapper_AVL_ordenado},
+        {.label = "Testar Desordenado", .action = wrapper_AVL_desordenado},
+        {.label = "Testar Ordenado", .action = wrapper_AVL_ordenado},
         {.label = "Testar Ambos", .action = wrapper_AVL_ambos},
 
         {.label = "VOLTAR", .action = exit_menu}
@@ -35,7 +31,7 @@ int call_menu_AVL(){
     );
 
     if(arquivo_nao_existe(ARQUIVO_ORDENADO)){
-        disable_item(&menu, "Teste Ordenado");
+        disable_item(&menu, "Testar Ordenado");
     }
 
     run_menu(&menu);
@@ -45,9 +41,9 @@ int call_menu_AVL(){
 int call_menu_RN(){
     Menu menu;
     ItemMenu itemMenu[] = {
-        {.label = "Teste Desordenado", .action = functionTest1},
-        {.label = "Teste Ordenado", .action = functionTest2},
-        {.label = "Teste Ambos", .action = functionTest1},
+        {.label = "Testar Desordenado", .action = wrapper_LLRB_desordenado},
+        {.label = "Testar Ordenado", .action = wrapper_LLRB_desordenado},
+        {.label = "Testar Ambos", .action = wrapper_LLRB_ambos},
 
         {.label = "VOLTAR", .action = exit_menu}
     };
@@ -63,7 +59,7 @@ int call_menu_RN(){
     );
 
     if(arquivo_nao_existe(ARQUIVO_ORDENADO)){
-        disable_item(&menu, "Teste Ordenado");
+        disable_item(&menu, "Testar Ordenado");
     }
 
     run_menu(&menu);
@@ -81,10 +77,10 @@ int wrapper_AVL_ordenado(){
 }
 
 int wrapper_AVL_ambos(){
-    printf(TEXT_COLOR2 "\nTESTE DESORDENADO:\n");
+    printf(TEXT_COLOR2 "\n    TESTE DESORDENADO:\n");
     testar_arvore(ARQUIVO_DESORDENADO, AVL);
 
-    printf(TEXT_COLOR2"\nTESTE ORDENADO:\n"COLOR_RESET);
+    printf(TEXT_COLOR2 "\n    TESTE ORDENADO:\n" COLOR_RESET);
     testar_arvore(ARQUIVO_ORDENADO, AVL);
     return 0;
 }
@@ -100,11 +96,29 @@ int wrapper_LLRB_ordenado(){
 }
 
 int wrapper_LLRB_ambos(){
-    printf(TEXT_COLOR2 "\nTESTE DESORDENADO:\n");
+    printf(TEXT_COLOR2 "\n    TESTE DESORDENADO:\n");
     testar_arvore(ARQUIVO_DESORDENADO, LLRB);
 
-    printf(TEXT_COLOR2"\nTESTE ORDENADO:\n"COLOR_RESET);
+    printf(TEXT_COLOR2 "\n    TESTE ORDENADO:\n" COLOR_RESET);
     testar_arvore(ARQUIVO_ORDENADO, LLRB);
+    return 0;
+}
+
+int wrapper_testar_todas(){
+    printf(TEXT_COLOR2 "\n       ARVORE AVL");
+    printf("\n    TESTE DESORDENADO:\n");
+    testar_arvore(ARQUIVO_DESORDENADO, AVL);
+
+    printf(TEXT_COLOR2 "\n    TESTE ORDENADO:\n" COLOR_RESET);
+    testar_arvore(ARQUIVO_ORDENADO, AVL);
+
+    printf(TEXT_COLOR2 "\n   ARVORE RUBRO-NEGRA");
+    printf("\n    TESTE DESORDENADO:\n");
+    testar_arvore(ARQUIVO_DESORDENADO, LLRB);
+
+    printf(TEXT_COLOR2 "\n    TESTE ORDENADO:\n" COLOR_RESET);
+    testar_arvore(ARQUIVO_ORDENADO, LLRB);
+
     return 0;
 }
 
@@ -122,6 +136,7 @@ StatusOP testar_arvore(const char* nome_arquivo, Arvore arvore){
 
     void* estrutura = NULL;
     if(arvore == AVL) estrutura = (void*) cria_arvAVL();
+    else if(arvore == LLRB) estrutura = (void*) cria_arvoreLLRB();
 
     fgets(header, sizeof(header), arquivo);
 
@@ -144,8 +159,6 @@ StatusOP testar_arvore(const char* nome_arquivo, Arvore arvore){
     system("PAUSE");
     printf(COLOR_RESET);
 
-    liberar_arvore(arvore, estrutura);
-
     if(arquivo_nao_existe(ARQUIVO_ORDENADO)){
         salvar_dados(arvore, estrutura, header, numeroFuncionario);
         printf(TEXT_COLOR "\nArquivo ordenado gerado!\n");
@@ -153,13 +166,14 @@ StatusOP testar_arvore(const char* nome_arquivo, Arvore arvore){
         printf(COLOR_RESET);
     }
 
+    liberar_arvore(arvore, estrutura);
+
     return OPERACAO_CONCLUIDA;
 }
 
 StatusOP inserir_arvore(Arvore arvore, void *estrutura, Funcionario funcionario){
-    if(arvore == AVL){
-        return insere_arvAVL(estrutura, funcionario);
-    }
+    if(arvore == AVL)return insere_arvAVL(estrutura, funcionario);
+    else if(arvore == LLRB)return insere_arvoreLLRB(estrutura, funcionario);
 
     return OPERACAO_FALHOU;
 }
@@ -167,6 +181,11 @@ StatusOP inserir_arvore(Arvore arvore, void *estrutura, Funcionario funcionario)
 StatusOP liberar_arvore(Arvore arvore, void *estrutura){
     if(arvore == AVL){
         liberar_arvAVL(estrutura);
+        return OPERACAO_CONCLUIDA;
+    }
+
+    else if(arvore == LLRB){
+        liberar_arvoreLLRB(estrutura);
         return OPERACAO_CONCLUIDA;
     }
 
@@ -204,9 +223,8 @@ StatusOP salvar_dados(Arvore arvore, void *estrutura, char* header, int quantida
 
     fprintf(arquivo, "%s", header);
 
-    if(arvore == AVL){
-        arvoreToCSV(estrutura, arquivo);
-    }
+    if(arvore == AVL) AVLtoCSV(estrutura, arquivo);
+    else if(arvore == LLRB) LLRBtoCSV(estrutura, arquivo);
     else return OPERACAO_FALHOU;
 
     fclose(arquivo);

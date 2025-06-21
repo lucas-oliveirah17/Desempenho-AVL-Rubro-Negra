@@ -390,12 +390,12 @@ struct NO_AVL *procuramenor(struct NO_AVL *atual){
     return no1;
 }
 
-void arvoreToCSV(arvAVL *raiz, FILE *arquivo){
+void AVLtoCSV(arvAVL *raiz, FILE *arquivo){
     if(raiz == NULL){
         return;
     }
     if(*raiz != NULL){
-        arvoreToCSV(&((*raiz)->esq), arquivo);
+        AVLtoCSV(&((*raiz)->esq), arquivo);
         fprintf(arquivo, "%d;%s;%d;%s;%s;%.2f\n",
             (*raiz)->dados.codigo,
             (*raiz)->dados.nome,
@@ -403,6 +403,6 @@ void arvoreToCSV(arvAVL *raiz, FILE *arquivo){
             (*raiz)->dados.empresa,
             (*raiz)->dados.departamento,
             (*raiz)->dados.salario);
-        arvoreToCSV(&((*raiz)->dir), arquivo);
+        AVLtoCSV(&((*raiz)->dir), arquivo);
     }
 }

@@ -53,7 +53,7 @@ int remove_arvAVL(arvAVL *raiz, Funcionario funcionario);
 
 struct NO_AVL *procuramenor(struct NO_AVL *atual);
 
-void arvoreToCSV(arvAVL *raiz, FILE *arquivo);
+void AVLtoCSV(arvAVL *raiz, FILE *arquivo);
 
 #endif // ARVOREAVL_H_INCLUDED
 

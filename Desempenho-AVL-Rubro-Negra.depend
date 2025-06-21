@@ -1,22 +1,22 @@
 # depslib dependency file v1.0
-1750475247 source:f:\projects\desempenho-avl-rubro-negra\arvoreavl.c
+1750477058 source:f:\projects\desempenho-avl-rubro-negra\arvoreavl.c
 	<stdio.h>
 	<stdlib.h>
 	"teste-desempenho.h"
 	"arvoreAVL.h"
 	"funcionario.h"
 
-1750475264 f:\projects\desempenho-avl-rubro-negra\arvoreavl.h
+1750476960 f:\projects\desempenho-avl-rubro-negra\arvoreavl.h
 	"funcionario.h"
 
-1750476374 source:f:\projects\desempenho-avl-rubro-negra\arvorellrb.c
+1750477044 source:f:\projects\desempenho-avl-rubro-negra\arvorellrb.c
 	<stdio.h>
 	<stdlib.h>
 	"teste-desempenho.h"
 	"arvoreLLRB.h"
 	"funcionario.h"
 
-1750476415 f:\projects\desempenho-avl-rubro-negra\arvorellrb.h
+1750477016 f:\projects\desempenho-avl-rubro-negra\arvorellrb.h
 	"funcionario.h"
 
 1750475250 source:f:\projects\desempenho-avl-rubro-negra\dynamic-menu.c
@@ -36,7 +36,7 @@
 
 1750475274 f:\projects\desempenho-avl-rubro-negra\colors-menu.h
 
-1750475254 source:f:\projects\desempenho-avl-rubro-negra\main.c
+1750477872 source:f:\projects\desempenho-avl-rubro-negra\main.c
 	<stdio.h>
 	<stdlib.h>
 	"dynamic-menu.h"
@@ -45,11 +45,11 @@
 	"arvoreAVL.h"
 	"arvoreLLRB.h"
 
-1750476485 f:\projects\desempenho-avl-rubro-negra\teste-desempenho.h
+1750477902 f:\projects\desempenho-avl-rubro-negra\teste-desempenho.h
 	"arvoreAVL.h"
 	"arvoreLLRB.h"
 
-1750475259 source:f:\projects\desempenho-avl-rubro-negra\teste-desempenho.c
+1750478787 source:f:\projects\desempenho-avl-rubro-negra\teste-desempenho.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

@@ -27,6 +27,10 @@ int call_menu_RN();
 int wrapper_AVL_desordenado();
 int wrapper_AVL_ordenado();
 int wrapper_AVL_ambos();
+int wrapper_LLRB_desordenado();
+int wrapper_LLRB_ordenado();
+int wrapper_LLRB_ambos();
+int wrapper_testar_todas();
 
 StatusOP testar_arvore(const char* nome_arquivo, Arvore arvore);
 StatusOP inserir_arvore(Arvore arvore, void *estrutura, Funcionario funcionario);

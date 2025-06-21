@@ -14,6 +14,8 @@ int main()
     ItemMenu itemMainMenu[] = {
         {.label = "Arvore AVL", .action = call_menu_AVL},
         {.label = "Arvore Rubro-Negra", .action = call_menu_RN},
+        {.label = "Testar todas", .action = wrapper_testar_todas},
+
         {.label = "SAIR", .action = exit_menu}
     };
     int columnsMenu = 1;

@@ -356,3 +356,20 @@ void confirmeInsercaoLLRB(int x){
         printf("Erro! Elemento nao inserido.\n");
     }
 }
+
+void LLRBtoCSV(arvoreLLRB *raiz, FILE *arquivo){
+    if(raiz == NULL){
+        return;
+    }
+    if(*raiz != NULL){
+        LLRBtoCSV(&((*raiz)->esq), arquivo);
+        fprintf(arquivo, "%d;%s;%d;%s;%s;%.2f\n",
+            (*raiz)->dados.codigo,
+            (*raiz)->dados.nome,
+            (*raiz)->dados.idade,
+            (*raiz)->dados.empresa,
+            (*raiz)->dados.departamento,
+            (*raiz)->dados.salario);
+        LLRBtoCSV(&((*raiz)->dir), arquivo);
+    }
+}

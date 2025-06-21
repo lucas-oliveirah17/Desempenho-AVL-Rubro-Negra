@@ -35,11 +35,16 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="arvoreAVL.h" />
+		<Unit filename="arvoreLLRB.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="arvoreLLRB.h" />
 		<Unit filename="colors-menu.h" />
 		<Unit filename="dynamic-menu.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="dynamic-menu.h" />
+		<Unit filename="funcionario.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>

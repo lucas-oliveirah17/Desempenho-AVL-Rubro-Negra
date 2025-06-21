@@ -57,4 +57,6 @@ struct NO_LLRB *procuraMenor(struct NO_LLRB *atual);
 
 void confirmeInsercaoLLRB(int x);
 
+void LLRBtoCSV(arvoreLLRB *raiz, FILE *arquivo);
+
 #endif // ARVORELLRB_H_INCLUDED
