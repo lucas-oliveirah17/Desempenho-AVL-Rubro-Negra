@@ -1,4 +1,4 @@
-// arquivo dynamic-menu.h
+// Arquivo dynamic-menu.h
 
 #ifndef DYNAMIC_MENU_H
 #define DYNAMIC_MENU_H

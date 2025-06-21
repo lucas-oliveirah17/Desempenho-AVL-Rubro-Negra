@@ -1,4 +1,4 @@
-// arquivo dynamic-menu.c
+// Arquivo dynamic-menu.c
 
 #include <stdio.h>
 #include <stdlib.h>

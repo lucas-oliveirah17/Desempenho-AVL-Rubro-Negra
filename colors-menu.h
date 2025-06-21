@@ -1,4 +1,4 @@
-// arquivo colors-menu.h
+// Arquivo colors-menu.h
 
 #ifndef COLORS_MENU_H
 #define COLORS_MENU_H

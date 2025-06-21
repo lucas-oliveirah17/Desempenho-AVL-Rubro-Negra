@@ -1,22 +1,25 @@
 # depslib dependency file v1.0
-1750466527 source:f:\projects\desempenho-avl-rubro-negra\arvoreavl.c
+1750475247 source:f:\projects\desempenho-avl-rubro-negra\arvoreavl.c
 	<stdio.h>
 	<stdlib.h>
 	"teste-desempenho.h"
 	"arvoreAVL.h"
 	"funcionario.h"
 
-1750466543 f:\projects\desempenho-avl-rubro-negra\arvoreavl.h
+1750475264 f:\projects\desempenho-avl-rubro-negra\arvoreavl.h
 	"funcionario.h"
 
-1748364685 source:f:\projects\desempenho-avl-rubro-negra\arvorellrb.c
+1750476374 source:f:\projects\desempenho-avl-rubro-negra\arvorellrb.c
 	<stdio.h>
 	<stdlib.h>
+	"teste-desempenho.h"
 	"arvoreLLRB.h"
+	"funcionario.h"
 
-1750439272 f:\projects\desempenho-avl-rubro-negra\arvorellrb.h
+1750476415 f:\projects\desempenho-avl-rubro-negra\arvorellrb.h
+	"funcionario.h"
 
-1750464911 source:f:\projects\desempenho-avl-rubro-negra\dynamic-menu.c
+1750475250 source:f:\projects\desempenho-avl-rubro-negra\dynamic-menu.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -24,27 +27,29 @@
 	"dynamic-menu.h"
 	"colors-menu.h"
 
-1750464514 f:\projects\desempenho-avl-rubro-negra\dynamic-menu.h
+1750475282 f:\projects\desempenho-avl-rubro-negra\dynamic-menu.h
 	<stdbool.h>
 	<conio.h>
 	<windows.h>
 	<termios.h>
 	<unistd.h>
 
-1750474447 f:\projects\desempenho-avl-rubro-negra\colors-menu.h
+1750475274 f:\projects\desempenho-avl-rubro-negra\colors-menu.h
 
-1750471502 source:f:\projects\desempenho-avl-rubro-negra\main.c
+1750475254 source:f:\projects\desempenho-avl-rubro-negra\main.c
 	<stdio.h>
 	<stdlib.h>
 	"dynamic-menu.h"
 	"colors-menu.h"
 	"teste-desempenho.h"
 	"arvoreAVL.h"
+	"arvoreLLRB.h"
 
-1750474289 f:\projects\desempenho-avl-rubro-negra\teste-desempenho.h
+1750476485 f:\projects\desempenho-avl-rubro-negra\teste-desempenho.h
 	"arvoreAVL.h"
+	"arvoreLLRB.h"
 
-1750471250 source:f:\projects\desempenho-avl-rubro-negra\teste-desempenho.c
+1750475259 source:f:\projects\desempenho-avl-rubro-negra\teste-desempenho.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -54,5 +59,5 @@
 	"teste-desempenho.h"
 	"funcionario.h"
 
-1750465466 f:\projects\desempenho-avl-rubro-negra\funcionario.h
+1750475286 f:\projects\desempenho-avl-rubro-negra\funcionario.h
 

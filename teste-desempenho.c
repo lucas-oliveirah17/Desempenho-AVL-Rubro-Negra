@@ -1,4 +1,4 @@
-// arquivo teste-desempenho.c
+// Arquivo teste-desempenho.c
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -86,6 +86,25 @@ int wrapper_AVL_ambos(){
 
     printf(TEXT_COLOR2"\nTESTE ORDENADO:\n"COLOR_RESET);
     testar_arvore(ARQUIVO_ORDENADO, AVL);
+    return 0;
+}
+
+int wrapper_LLRB_desordenado(){
+    testar_arvore(ARQUIVO_DESORDENADO, LLRB);
+    return 0;
+}
+
+int wrapper_LLRB_ordenado(){
+    testar_arvore(ARQUIVO_ORDENADO, LLRB);
+    return 0;
+}
+
+int wrapper_LLRB_ambos(){
+    printf(TEXT_COLOR2 "\nTESTE DESORDENADO:\n");
+    testar_arvore(ARQUIVO_DESORDENADO, LLRB);
+
+    printf(TEXT_COLOR2"\nTESTE ORDENADO:\n"COLOR_RESET);
+    testar_arvore(ARQUIVO_ORDENADO, LLRB);
     return 0;
 }
 

@@ -1,4 +1,4 @@
-// arquivo funcionario.h
+// Arquivo funcionario.h
 
 #ifndef FUNCIONARIO_H
 #define FUNCIONARIO_H

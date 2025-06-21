@@ -1,9 +1,10 @@
-// arquivo teste-desempenho.h
+// Arquivo teste-desempenho.h
 
 #ifndef TESTE_DESEMPENHO_H
 #define TESTE_DESEMPENHO_H
 
 #include "arvoreAVL.h"
+#include "arvoreLLRB.h"
 
 #define ARQUIVO_DESORDENADO "massaDados.csv"
 #define ARQUIVO_ORDENADO "massaDadosOrdenado.csv"
@@ -18,7 +19,7 @@ typedef enum{
 
 typedef enum{
     AVL,
-    RUBRO,
+    LLRB,
 }Arvore;
 
 int call_menu_AVL();
