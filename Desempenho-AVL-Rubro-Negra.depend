@@ -31,9 +31,9 @@
 	<termios.h>
 	<unistd.h>
 
-1750464502 f:\projects\desempenho-avl-rubro-negra\colors-menu.h
+1750469698 f:\projects\desempenho-avl-rubro-negra\colors-menu.h
 
-1750464484 source:f:\projects\desempenho-avl-rubro-negra\main.c
+1750467764 source:f:\projects\desempenho-avl-rubro-negra\main.c
 	<stdio.h>
 	<stdlib.h>
 	"dynamic-menu.h"
@@ -41,10 +41,10 @@
 	"teste-desempenho.h"
 	"arvoreAVL.h"
 
-1750466532 f:\projects\desempenho-avl-rubro-negra\teste-desempenho.h
+1750469985 f:\projects\desempenho-avl-rubro-negra\teste-desempenho.h
 	"arvoreAVL.h"
 
-1750466515 source:f:\projects\desempenho-avl-rubro-negra\teste-desempenho.c
+1750469709 source:f:\projects\desempenho-avl-rubro-negra\teste-desempenho.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

@@ -17,11 +17,13 @@ typedef enum{
 
 int call_menu_AVL();
 int call_menu_RN();
+int wrapper_AVL_desordenado();
 
 void print_funcionario(Funcionario func);
+Funcionario carregar_funcionario(char *linha);
 
-StatusOP arquivo_nao_existe(char* nome_arquivo);
-StatusOP teste_arvore_AVL(char* nome_arquivo);
+StatusOP arquivo_nao_existe(const char* nome_arquivo);
+StatusOP teste_arvore_AVL(const char* nome_arquivo);
 StatusOP salvar_dados(arvAVL *dados, char* header, int quantidade);
 
 void countingSort(int *inputArray, int numElementos);

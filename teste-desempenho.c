@@ -17,7 +17,7 @@ int functionTest2(){printf("Option 2 selected.\n"); system("PAUSE"); return 0;}
 int call_menu_AVL(){
     Menu menu;
     ItemMenu itemMenu[] = {
-        {.label = "Teste Desordenado", .action = functionTest1},
+        {.label = "Teste Desordenado", .action = wrapper_AVL_desordenado},
         {.label = "Teste Ordenado", .action = functionTest2},
 
         {.label = "VOLTAR", .action = exit_menu}
@@ -68,8 +68,13 @@ int call_menu_RN(){
     return 0;
 }
 
+int wrapper_AVL_desordenado(){
+    teste_arvore_AVL(ARQUIVO_DESORDENADO);
+    return 0;
+}
+
 void print_funcionario(Funcionario func){
-    printf("\n------------------------------");
+    printf(TEXT_COLOR "\n------------------------------");
     printf("\nCodigo: %d", func.codigo);
     printf("\nNome: %s", func.nome);
     printf("\nIdade: %d", func.idade);
@@ -77,9 +82,11 @@ void print_funcionario(Funcionario func){
     printf("\nDepartamento: %s", func.departamento);
     printf("\nSalario: R$ %.2f", func.salario);
     printf("\n------------------------------\n");
+    system("PAUSE");
+    printf(COLOR_RESET);
 }
 
-StatusOP arquivo_nao_existe(char* nome_arquivo){
+StatusOP arquivo_nao_existe(const char* nome_arquivo){
     FILE *arquivo;
     arquivo = (fopen(nome_arquivo, "r"));
     if(arquivo == NULL){
@@ -91,7 +98,7 @@ StatusOP arquivo_nao_existe(char* nome_arquivo){
     }
 }
 
-StatusOP teste_arvore_AVL(char* nome_arquivo){
+StatusOP teste_arvore_AVL(const char* nome_arquivo){
     FILE *arquivo;
     Funcionario funcionario;
     int numeroFuncionario = 0;
@@ -113,44 +120,46 @@ StatusOP teste_arvore_AVL(char* nome_arquivo){
     char headerDados[256];
 
     fgets(headerDados, sizeof(dados), arquivo);
-    printf("\ndados: %s\n", headerDados);
-    system("PAUSE");
 
     while(fgets(dados, sizeof(dados), arquivo)){
-        funcionario.codigo = atoi(strtok(dados, ";"));
-        strcpy(funcionario.nome, strtok(NULL, ";"));
-        funcionario.idade = atoi(strtok(NULL, ";"));
-        strcpy(funcionario.empresa, strtok(NULL, ";"));
-        strcpy(funcionario.departamento, strtok(NULL, ";"));
-        funcionario.salario = atof(strtok(NULL, "\n"));
-
+        funcionario = carregar_funcionario(dados);
         numeroFuncionario++;
-        //print_funcionario(funcionario);
-
         insere_arvAVL(arvoreAVL, funcionario);
-//        if(numeroFuncionario == 10) {
-//            printf("\nInsercao concluida!\n");
-//            system("PAUSE");
-//            break;
-//        }
     }
-//    emOrdem_arvAVL(arvoreAVL);
-//    system("PAUSE");
 
     gettimeofday(&tempoFim, NULL);
     tempoMedido = (tempoFim.tv_sec + tempoFim.tv_usec/1000000.0) -
             (tempoInicio.tv_sec + tempoInicio.tv_usec/1000000.0);
 
-    printf("\nTempo decorrido: %lfs", tempoMedido);
+    printf(TEXT_COLOR "\nTempo decorrido: %lfs", tempoMedido);
     printf("\nFoi adicionado %d elementos na arvore\n", numeroFuncionario);
     system("PAUSE");
+    printf(COLOR_RESET);
 
-    salvar_dados(arvoreAVL, headerDados, numeroFuncionario);
+    if(arquivo_nao_existe(ARQUIVO_ORDENADO)){
+        salvar_dados(arvoreAVL, headerDados, numeroFuncionario);
+        printf(TEXT_COLOR "\nArquivo ordenado gerado!\n");
+        system("PAUSE");
+        printf(COLOR_RESET);
+    }
 
     fclose(arquivo);
     liberar_arvAVL(arvoreAVL);
 
     return OPERACAO_CONCLUIDA;
+}
+
+Funcionario carregar_funcionario(char *linha){
+    Funcionario funcionario;
+
+    funcionario.codigo = atoi(strtok(linha, ";"));
+    strcpy(funcionario.nome, strtok(NULL, ";"));
+    funcionario.idade = atoi(strtok(NULL, ";"));
+    strcpy(funcionario.empresa, strtok(NULL, ";"));
+    strcpy(funcionario.departamento, strtok(NULL, ";"));
+    funcionario.salario = atof(strtok(NULL, "\n"));
+
+    return funcionario;
 }
 
 StatusOP salvar_dados(arvAVL *dados, char* header, int quantidade){
@@ -165,7 +174,6 @@ StatusOP salvar_dados(arvAVL *dados, char* header, int quantidade){
 }
 
 void countingSort(int *inputArray, int numElementos) {
-    // Encontrar o maior número no array
     int maiorNumero = 0;
     for (int i = 0; i < numElementos; i++){
         if (inputArray[i] > maiorNumero){
@@ -173,43 +181,27 @@ void countingSort(int *inputArray, int numElementos) {
         }
     }
 
-    // Inicializar um array auxiliar, sendo que o tamanho dele
-    // será igual ao MAIOR NÚMERO encontrado no array de input
     int* auxArray = (int*)calloc(maiorNumero + 1, sizeof(int));
 
-    // Utilizaremos os índices do array auxiliar
-    // para contabilizar a quantidade de aparições
-    // de cada número no nosso array de input
     for (int i = 0; i < numElementos; i++){
         auxArray[inputArray[i]]++;
     }
 
-    // Para cada index do array auxiliar
-    // Calcularemos a soma acumulativa dos index anteriores
-    // Ex: {0, 1, 4, 2, 0, 0, 1} -> {0, 1, 5, 7, 7, 7, 8}
     for (int i = 1; i <= maiorNumero; i++){
         auxArray[i] += auxArray[i - 1];
     }
 
-    // Criamos o array de output, onde conterá os números ordenados
-    // Percorremos o array de input de trás para frente, garantindo
-    // que elementos iguais mantenham a ordem original (estabilidade).
-    // Cada número é colocado na posição correta no array ordenado
-    // e decrementamos o array auxiliar para os números que já foram processados
     int* arrayOrdenado = (int*)malloc(numElementos * sizeof(int));
     for (int i = numElementos - 1; i >= 0; i--){
         arrayOrdenado[auxArray[inputArray[i]] - 1] = inputArray[i];
         auxArray[inputArray[i]]--;
     }
 
-    // Copiaremos os elementos do array ordenado para o array de input
-    // Apenas faremos isso pois essa função não retorna um novo array,
-    // E sim ordena no próprio array que foi passado.
     for (int i = 0; i < numElementos; i++){
         inputArray[i] = arrayOrdenado[i];
     }
 
-    // Liberando a memória alocada
     free(auxArray);
     free(arrayOrdenado);
 }
+

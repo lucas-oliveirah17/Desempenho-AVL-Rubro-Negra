@@ -10,14 +10,13 @@
 
 int main()
 {
-    teste_arvore_AVL(ARQUIVO_DESORDENADO);
+    //teste_arvore_AVL(ARQUIVO_DESORDENADO);
 
-    system("PAUSE");
+    //system("PAUSE");
 
     ItemMenu itemMainMenu[] = {
         {.label = "Arvore AVL", .action = call_menu_AVL},
         {.label = "Arvore Rubro-Negra", .action = call_menu_RN},
-
         {.label = "SAIR", .action = exit_menu}
     };
     int columnsMenu = 1;
