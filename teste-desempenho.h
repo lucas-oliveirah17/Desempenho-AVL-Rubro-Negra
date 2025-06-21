@@ -41,6 +41,6 @@ StatusOP arquivo_nao_existe(const char* nome_arquivo);
 Funcionario carregar_funcionario(char *linha);
 void print_funcionario(Funcionario func);
 
-void countingSort(int *inputArray, int numElementos);
+void countingSort(Funcionario *funcionario, int numElementos);
 
 #endif // TESTE_DESEMPENHO_H_INCLUDED

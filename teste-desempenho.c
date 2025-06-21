@@ -244,34 +244,36 @@ void print_funcionario(Funcionario func){
     printf(COLOR_RESET);
 }
 
-void countingSort(int *inputArray, int numElementos) {
-    int maiorNumero = 0;
-    for (int i = 0; i < numElementos; i++){
-        if (inputArray[i] > maiorNumero){
-            maiorNumero = inputArray[i];
+void countingSort(Funcionario *funcionario, int quantidade) {
+    int maiorCodigo = funcionario[0].codigo;
+
+    for (int i = 0; i < quantidade; i++){
+        if (funcionario[i].codigo > maiorCodigo){
+            maiorCodigo = funcionario[i].codigo;
         }
     }
 
-    int* auxArray = (int*)calloc(maiorNumero + 1, sizeof(int));
+    int* contagem = (int*)calloc(maiorCodigo + 1, sizeof(int));
 
-    for (int i = 0; i < numElementos; i++){
-        auxArray[inputArray[i]]++;
+    for (int i = 0; i < quantidade; i++){
+        contagem[funcionario[i].codigo]++;
     }
 
-    for (int i = 1; i <= maiorNumero; i++){
-        auxArray[i] += auxArray[i - 1];
+    for (int i = 1; i <= maiorCodigo; i++){
+        contagem[i] += contagem[i - 1];
     }
 
-    int* arrayOrdenado = (int*)malloc(numElementos * sizeof(int));
-    for (int i = numElementos - 1; i >= 0; i--){
-        arrayOrdenado[auxArray[inputArray[i]] - 1] = inputArray[i];
-        auxArray[inputArray[i]]--;
+    Funcionario* ordenado = (Funcionario*)malloc(quantidade * sizeof(Funcionario));
+
+    for (int i = quantidade - 1; i >= 0; i--){
+        ordenado[contagem[funcionario[i].codigo] - 1] = funcionario[i];
+        contagem[funcionario[i].codigo]--;
     }
 
-    for (int i = 0; i < numElementos; i++){
-        inputArray[i] = arrayOrdenado[i];
+    for (int i = 0; i < quantidade; i++){
+        funcionario[i] = ordenado[i];
     }
 
-    free(auxArray);
-    free(arrayOrdenado);
+    free(contagem);
+    free(ordenado);
 }

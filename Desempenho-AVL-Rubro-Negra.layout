@@ -2,49 +2,19 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="arvoreAVL.c" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="12396" topLine="381" />
-		</Cursor>
-	</File>
-	<File name="funcionario.h" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="colors-menu.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="4" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="teste-desempenho.c" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="6660" topLine="231" />
 		</Cursor>
 	</File>
 	<File name="arvoreLLRB.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1459" topLine="34" />
-		</Cursor>
-	</File>
-	<File name="arvoreLLRB.c" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="8602" topLine="138" />
-		</Cursor>
-	</File>
-	<File name="teste-desempenho.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="683" topLine="15" />
-		</Cursor>
-	</File>
-	<File name="arvoreAVL.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1049" topLine="31" />
-		</Cursor>
-	</File>
-	<File name="teste-desempenho.c" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2778" topLine="202" />
-		</Cursor>
-	</File>
-	<File name="main.c" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="436" topLine="5" />
-		</Cursor>
-	</File>
-	<File name="colors-menu.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4" topLine="0" />
+			<Cursor1 position="1459" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="dynamic-menu.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -52,9 +22,39 @@
 			<Cursor1 position="4" topLine="0" />
 		</Cursor>
 	</File>
+	<File name="main.c" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="436" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="arvoreAVL.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1049" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="arvoreLLRB.c" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="8602" topLine="138" />
+		</Cursor>
+	</File>
 	<File name="dynamic-menu.c" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="4" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="teste-desempenho.h" open="1" top="1" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1173" topLine="18" />
+		</Cursor>
+	</File>
+	<File name="funcionario.h" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="arvoreAVL.c" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="12396" topLine="342" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>
