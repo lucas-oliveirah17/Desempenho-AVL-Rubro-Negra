@@ -12,19 +12,29 @@ typedef enum{
     ARQUIVO_NAO_ENCONTRADO = 1,
     ARQUIVO_ENCONTRADO = 0,
 
-    OPERACAO_CONCLUIDA = 0
+    OPERACAO_CONCLUIDA = 0,
+    OPERACAO_FALHOU = 1
 }StatusOP;
+
+typedef enum{
+    AVL,
+    RUBRO,
+}Arvore;
 
 int call_menu_AVL();
 int call_menu_RN();
 int wrapper_AVL_desordenado();
+int wrapper_AVL_ordenado();
+int wrapper_AVL_ambos();
 
-void print_funcionario(Funcionario func);
-Funcionario carregar_funcionario(char *linha);
+StatusOP testar_arvore(const char* nome_arquivo, Arvore arvore);
+StatusOP inserir_arvore(Arvore arvore, void *estrutura, Funcionario funcionario);
+StatusOP liberar_arvore(Arvore arvore, void *estrutura);
+StatusOP salvar_dados(Arvore arvore, void *estrutura, char* header, int quantidade);
 
 StatusOP arquivo_nao_existe(const char* nome_arquivo);
-StatusOP teste_arvore_AVL(const char* nome_arquivo);
-StatusOP salvar_dados(arvAVL *dados, char* header, int quantidade);
+Funcionario carregar_funcionario(char *linha);
+void print_funcionario(Funcionario func);
 
 void countingSort(int *inputArray, int numElementos);
 

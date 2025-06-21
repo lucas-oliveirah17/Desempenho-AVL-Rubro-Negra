@@ -18,7 +18,8 @@ int call_menu_AVL(){
     Menu menu;
     ItemMenu itemMenu[] = {
         {.label = "Teste Desordenado", .action = wrapper_AVL_desordenado},
-        {.label = "Teste Ordenado", .action = functionTest2},
+        {.label = "Teste Ordenado", .action = wrapper_AVL_ordenado},
+        {.label = "Testar Ambos", .action = wrapper_AVL_ambos},
 
         {.label = "VOLTAR", .action = exit_menu}
     };
@@ -46,6 +47,7 @@ int call_menu_RN(){
     ItemMenu itemMenu[] = {
         {.label = "Teste Desordenado", .action = functionTest1},
         {.label = "Teste Ordenado", .action = functionTest2},
+        {.label = "Teste Ambos", .action = functionTest1},
 
         {.label = "VOLTAR", .action = exit_menu}
     };
@@ -69,65 +71,52 @@ int call_menu_RN(){
 }
 
 int wrapper_AVL_desordenado(){
-    teste_arvore_AVL(ARQUIVO_DESORDENADO);
+    testar_arvore(ARQUIVO_DESORDENADO, AVL);
     return 0;
 }
 
-void print_funcionario(Funcionario func){
-    printf(TEXT_COLOR "\n------------------------------");
-    printf("\nCodigo: %d", func.codigo);
-    printf("\nNome: %s", func.nome);
-    printf("\nIdade: %d", func.idade);
-    printf("\nEmpresa: %s", func.empresa);
-    printf("\nDepartamento: %s", func.departamento);
-    printf("\nSalario: R$ %.2f", func.salario);
-    printf("\n------------------------------\n");
-    system("PAUSE");
-    printf(COLOR_RESET);
+int wrapper_AVL_ordenado(){
+    testar_arvore(ARQUIVO_ORDENADO, AVL);
+    return 0;
 }
 
-StatusOP arquivo_nao_existe(const char* nome_arquivo){
-    FILE *arquivo;
-    arquivo = (fopen(nome_arquivo, "r"));
-    if(arquivo == NULL){
-        return ARQUIVO_NAO_ENCONTRADO;
-    }
-    else {
-        fclose(arquivo);
-        return ARQUIVO_ENCONTRADO;
-    }
+int wrapper_AVL_ambos(){
+    printf(TEXT_COLOR2 "\nTESTE DESORDENADO:\n");
+    testar_arvore(ARQUIVO_DESORDENADO, AVL);
+
+    printf(TEXT_COLOR2"\nTESTE ORDENADO:\n"COLOR_RESET);
+    testar_arvore(ARQUIVO_ORDENADO, AVL);
+    return 0;
 }
 
-StatusOP teste_arvore_AVL(const char* nome_arquivo){
-    FILE *arquivo;
-    Funcionario funcionario;
+StatusOP testar_arvore(const char* nome_arquivo, Arvore arvore){
+    FILE *arquivo = fopen(nome_arquivo, "r");
+    if(!arquivo) return ARQUIVO_NAO_ENCONTRADO;
+
+    char linha[256];
+    char header[256];
     int numeroFuncionario = 0;
-
-    arvAVL *arvoreAVL;
-    arvoreAVL = cria_arvAVL();
+    Funcionario funcionario;
 
     struct timeval tempoInicio, tempoFim;
     double tempoMedido;
 
+    void* estrutura = NULL;
+    if(arvore == AVL) estrutura = (void*) cria_arvAVL();
+
+    fgets(header, sizeof(header), arquivo);
+
     gettimeofday(&tempoInicio, NULL);
-
-    arquivo = (fopen(nome_arquivo, "r"));
-    if(arquivo == NULL){
-        return ARQUIVO_NAO_ENCONTRADO;
-    }
-
-    char dados[256];
-    char headerDados[256];
-
-    fgets(headerDados, sizeof(dados), arquivo);
-
-    while(fgets(dados, sizeof(dados), arquivo)){
-        funcionario = carregar_funcionario(dados);
+    while (fgets(linha, sizeof(linha), arquivo)) {
+        funcionario = carregar_funcionario(linha);
+        inserir_arvore(arvore, estrutura, funcionario);
         numeroFuncionario++;
-        insere_arvAVL(arvoreAVL, funcionario);
     }
 
     gettimeofday(&tempoFim, NULL);
+
+    fclose(arquivo);
+
     tempoMedido = (tempoFim.tv_sec + tempoFim.tv_usec/1000000.0) -
             (tempoInicio.tv_sec + tempoInicio.tv_usec/1000000.0);
 
@@ -136,17 +125,33 @@ StatusOP teste_arvore_AVL(const char* nome_arquivo){
     system("PAUSE");
     printf(COLOR_RESET);
 
+    liberar_arvore(arvore, estrutura);
+
     if(arquivo_nao_existe(ARQUIVO_ORDENADO)){
-        salvar_dados(arvoreAVL, headerDados, numeroFuncionario);
+        salvar_dados(arvore, estrutura, header, numeroFuncionario);
         printf(TEXT_COLOR "\nArquivo ordenado gerado!\n");
         system("PAUSE");
         printf(COLOR_RESET);
     }
 
-    fclose(arquivo);
-    liberar_arvAVL(arvoreAVL);
-
     return OPERACAO_CONCLUIDA;
+}
+
+StatusOP inserir_arvore(Arvore arvore, void *estrutura, Funcionario funcionario){
+    if(arvore == AVL){
+        return insere_arvAVL(estrutura, funcionario);
+    }
+
+    return OPERACAO_FALHOU;
+}
+
+StatusOP liberar_arvore(Arvore arvore, void *estrutura){
+    if(arvore == AVL){
+        liberar_arvAVL(estrutura);
+        return OPERACAO_CONCLUIDA;
+    }
+
+    return OPERACAO_FALHOU;
 }
 
 Funcionario carregar_funcionario(char *linha){
@@ -162,15 +167,44 @@ Funcionario carregar_funcionario(char *linha){
     return funcionario;
 }
 
-StatusOP salvar_dados(arvAVL *dados, char* header, int quantidade){
+StatusOP arquivo_nao_existe(const char* nome_arquivo){
+    FILE *arquivo;
+    arquivo = (fopen(nome_arquivo, "r"));
+    if(arquivo == NULL){
+        return ARQUIVO_NAO_ENCONTRADO;
+    }
+    else {
+        fclose(arquivo);
+        return ARQUIVO_ENCONTRADO;
+    }
+}
+
+StatusOP salvar_dados(Arvore arvore, void *estrutura, char* header, int quantidade){
     FILE *arquivo;
     arquivo = (fopen(ARQUIVO_ORDENADO, "w"));
 
     fprintf(arquivo, "%s", header);
 
-    arvoreToCSV(dados, arquivo);
+    if(arvore == AVL){
+        arvoreToCSV(estrutura, arquivo);
+    }
+    else return OPERACAO_FALHOU;
 
+    fclose(arquivo);
     return OPERACAO_CONCLUIDA;
+}
+
+void print_funcionario(Funcionario func){
+    printf(TEXT_COLOR "\n------------------------------");
+    printf("\nCodigo: %d", func.codigo);
+    printf("\nNome: %s", func.nome);
+    printf("\nIdade: %d", func.idade);
+    printf("\nEmpresa: %s", func.empresa);
+    printf("\nDepartamento: %s", func.departamento);
+    printf("\nSalario: R$ %.2f", func.salario);
+    printf("\n------------------------------\n");
+    system("PAUSE");
+    printf(COLOR_RESET);
 }
 
 void countingSort(int *inputArray, int numElementos) {
@@ -204,4 +238,3 @@ void countingSort(int *inputArray, int numElementos) {
     free(auxArray);
     free(arrayOrdenado);
 }
-
