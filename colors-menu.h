@@ -1,3 +1,8 @@
+// arquivo colors-menu.h
+
+#ifndef COLORS_MENU_H
+#define COLORS_MENU_H
+
 #define HEADER_COLOR   FONT_BOLD COLOR_BLUE
 #define MENU_COLOR     FONT_BOLD COLOR_WHITE
 #define SELECTED_COLOR FONT_BOLD COLOR_GREEN
@@ -17,3 +22,5 @@
 #define COLOR_MAGENTA  "\x1b[35m"
 #define COLOR_CYAN     "\x1b[36m"
 #define COLOR_WHITE    "\x1b[37m"
+
+#endif // COLORS_MENU_H_INCLUDED

@@ -1,11 +1,14 @@
+// arquivo teste-desempenho.c
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/time.h>
+
 #include "dynamic-menu.h"
 #include "colors-menu.h"
 #include "teste-desempenho.h"
-#include "arvoreAVL.h"
+#include "funcionario.h"
 
 // Funções para teste
 int functionTest1(){printf("Option 1 selected.\n"); system("PAUSE"); return 0;}
@@ -106,10 +109,11 @@ StatusOP teste_arvore_AVL(char* nome_arquivo){
         return ARQUIVO_NAO_ENCONTRADO;
     }
 
-    char dados[100];
+    char dados[256];
+    char headerDados[256];
 
-    fgets(dados, sizeof(dados), arquivo);
-    printf("\ndados: %s\n", dados);
+    fgets(headerDados, sizeof(dados), arquivo);
+    printf("\ndados: %s\n", headerDados);
     system("PAUSE");
 
     while(fgets(dados, sizeof(dados), arquivo)){
@@ -124,24 +128,88 @@ StatusOP teste_arvore_AVL(char* nome_arquivo){
         //print_funcionario(funcionario);
 
         insere_arvAVL(arvoreAVL, funcionario);
-        if(numeroFuncionario == 10) {
-            printf("\nInsercao concluida!\n");
-            system("PAUSE");
-            break;
-        }
+//        if(numeroFuncionario == 10) {
+//            printf("\nInsercao concluida!\n");
+//            system("PAUSE");
+//            break;
+//        }
     }
-    emOrdem_arvAVL(arvoreAVL);
-    system("PAUSE");
+//    emOrdem_arvAVL(arvoreAVL);
+//    system("PAUSE");
 
     gettimeofday(&tempoFim, NULL);
     tempoMedido = (tempoFim.tv_sec + tempoFim.tv_usec/1000000.0) -
             (tempoInicio.tv_sec + tempoInicio.tv_usec/1000000.0);
 
-    printf("\nTempo decorrido: %lfs\n", tempoMedido);
+    printf("\nTempo decorrido: %lfs", tempoMedido);
+    printf("\nFoi adicionado %d elementos na arvore\n", numeroFuncionario);
     system("PAUSE");
+
+    salvar_dados(arvoreAVL, headerDados, numeroFuncionario);
 
     fclose(arquivo);
     liberar_arvAVL(arvoreAVL);
 
     return OPERACAO_CONCLUIDA;
+}
+
+StatusOP salvar_dados(arvAVL *dados, char* header, int quantidade){
+    FILE *arquivo;
+    arquivo = (fopen(ARQUIVO_ORDENADO, "w"));
+
+    fprintf(arquivo, "%s", header);
+
+    arvoreToCSV(dados, arquivo);
+
+    return OPERACAO_CONCLUIDA;
+}
+
+void countingSort(int *inputArray, int numElementos) {
+    // Encontrar o maior número no array
+    int maiorNumero = 0;
+    for (int i = 0; i < numElementos; i++){
+        if (inputArray[i] > maiorNumero){
+            maiorNumero = inputArray[i];
+        }
+    }
+
+    // Inicializar um array auxiliar, sendo que o tamanho dele
+    // será igual ao MAIOR NÚMERO encontrado no array de input
+    int* auxArray = (int*)calloc(maiorNumero + 1, sizeof(int));
+
+    // Utilizaremos os índices do array auxiliar
+    // para contabilizar a quantidade de aparições
+    // de cada número no nosso array de input
+    for (int i = 0; i < numElementos; i++){
+        auxArray[inputArray[i]]++;
+    }
+
+    // Para cada index do array auxiliar
+    // Calcularemos a soma acumulativa dos index anteriores
+    // Ex: {0, 1, 4, 2, 0, 0, 1} -> {0, 1, 5, 7, 7, 7, 8}
+    for (int i = 1; i <= maiorNumero; i++){
+        auxArray[i] += auxArray[i - 1];
+    }
+
+    // Criamos o array de output, onde conterá os números ordenados
+    // Percorremos o array de input de trás para frente, garantindo
+    // que elementos iguais mantenham a ordem original (estabilidade).
+    // Cada número é colocado na posição correta no array ordenado
+    // e decrementamos o array auxiliar para os números que já foram processados
+    int* arrayOrdenado = (int*)malloc(numElementos * sizeof(int));
+    for (int i = numElementos - 1; i >= 0; i--){
+        arrayOrdenado[auxArray[inputArray[i]] - 1] = inputArray[i];
+        auxArray[inputArray[i]]--;
+    }
+
+    // Copiaremos os elementos do array ordenado para o array de input
+    // Apenas faremos isso pois essa função não retorna um novo array,
+    // E sim ordena no próprio array que foi passado.
+    for (int i = 0; i < numElementos; i++){
+        inputArray[i] = arrayOrdenado[i];
+    }
+
+    // Liberando a memória alocada
+    free(auxArray);
+    free(arrayOrdenado);
 }

@@ -1,5 +1,9 @@
 // Arquivo arvoreAVL.h
-#include "teste-desempenho.h"
+
+#ifndef ARVOREAVL_H
+#define ARVOREAVL_H
+
+#include "funcionario.h"
 
 typedef struct NO_AVL *arvAVL;
 
@@ -23,7 +27,7 @@ void posOrdem_arvAVL(arvAVL *raiz);
 
 struct NO_AVL *remove_atual(struct NO_AVL *atual);
 
-int consulta_arvAVL(arvAVL*raiz, Funcionario funcionario);
+int consulta_arvAVL(arvAVL *raiz, Funcionario funcionario);
 
 // Código arvore AVL
 
@@ -48,4 +52,8 @@ void confirmeInsercao(int x);
 int remove_arvAVL(arvAVL *raiz, Funcionario funcionario);
 
 struct NO_AVL *procuramenor(struct NO_AVL *atual);
+
+void arvoreToCSV(arvAVL *raiz, FILE *arquivo);
+
+#endif // ARVOREAVL_H_INCLUDED
 

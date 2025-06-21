@@ -2,8 +2,10 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "arvoreAVL.h"
+
 #include "teste-desempenho.h"
+#include "arvoreAVL.h"
+#include "funcionario.h"
 
 struct NO_AVL{
     //int info;
@@ -388,3 +390,19 @@ struct NO_AVL *procuramenor(struct NO_AVL *atual){
     return no1;
 }
 
+void arvoreToCSV(arvAVL *raiz, FILE *arquivo){
+    if(raiz == NULL){
+        return;
+    }
+    if(*raiz != NULL){
+        arvoreToCSV(&((*raiz)->esq), arquivo);
+        fprintf(arquivo, "%d;%s;%d;%s;%s;%.2f\n",
+            (*raiz)->dados.codigo,
+            (*raiz)->dados.nome,
+            (*raiz)->dados.idade,
+            (*raiz)->dados.empresa,
+            (*raiz)->dados.departamento,
+            (*raiz)->dados.salario);
+        arvoreToCSV(&((*raiz)->dir), arquivo);
+    }
+}

@@ -1,19 +1,15 @@
+// arquivo main.c
+
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "dynamic-menu.h"
 #include "colors-menu.h"
 #include "teste-desempenho.h"
+#include "arvoreAVL.h"
 
 int main()
 {
-//    Funcionario f;
-//    f.codigo = 23;
-//    f.nome = "Lucas";
-//    f.idade = 22;
-//    f.departamento = "TI";
-//    f.empresa = "Google";
-//    f.salario = 3254.56;
-//    print_funcionario(f);
     teste_arvore_AVL(ARQUIVO_DESORDENADO);
 
     system("PAUSE");
