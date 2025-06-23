@@ -49,7 +49,7 @@ void run_menu(Menu *menu){
 
     do{
         display_menu(menu);
-
+        isCommand = false;
         do{
             input = read_key();
             if(input){
@@ -171,7 +171,6 @@ void run_menu(Menu *menu){
                 }
             }
         }while(!isCommand);
-        isCommand = false;
     }while(1);
 }
 
@@ -355,11 +354,34 @@ MenuOpStatus disable_item(Menu *menu, const char* label){
     for(int i = 0; i < menu->numberItems; i++){
         if(strcmp(menu->item[i].label, label) == 0){
             menu->item[i].activated = false;
+
+            update_selectedIndex(menu);
+
             return MENU_OP_SUCCESS;
         }
     }
 
     return MENU_OP_ITEM_NOT_FOUND;
+}
+
+MenuOpStatus enable_item(Menu *menu, const char* label){
+    for(int i = 0; i < menu->numberItems; i++){
+        if(strcmp(menu->item[i].label, label) == 0){
+            menu->item[i].activated = true;
+
+            return MENU_OP_SUCCESS;
+        }
+    }
+
+    return MENU_OP_ITEM_NOT_FOUND;
+}
+
+MenuOpStatus update_selectedIndex(Menu *menu){
+    while(!menu->item[menu->selectedIndex].activated){
+        menu->selectedIndex++;
+    }
+
+    return MENU_OP_SUCCESS;
 }
 
 int exit_menu(){

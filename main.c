@@ -11,6 +11,10 @@
 
 int main()
 {
+    if(arquivo_nao_existe(ARQUIVO_ORDENADO)){
+        vetorToCSV();
+    }
+
     ItemMenu itemMainMenu[] = {
         {.label = "Arvore AVL", .action = call_menu_AVL},
         {.label = "Arvore Rubro-Negra", .action = call_menu_RN},
@@ -27,6 +31,10 @@ int main()
         columnsMenu,
         gapMenu
     );
+
+    if(arquivo_nao_existe(ARQUIVO_DESORDENADO)){
+        disable_item(&mainMenu, "Testar todas");
+    }
 
     run_menu(&mainMenu);
     return 0;

@@ -19,7 +19,7 @@
 1750477016 f:\projects\desempenho-avl-rubro-negra\arvorellrb.h
 	"funcionario.h"
 
-1750475250 source:f:\projects\desempenho-avl-rubro-negra\dynamic-menu.c
+1750660453 source:f:\projects\desempenho-avl-rubro-negra\dynamic-menu.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -27,7 +27,7 @@
 	"dynamic-menu.h"
 	"colors-menu.h"
 
-1750475282 f:\projects\desempenho-avl-rubro-negra\dynamic-menu.h
+1750656393 f:\projects\desempenho-avl-rubro-negra\dynamic-menu.h
 	<stdbool.h>
 	<conio.h>
 	<windows.h>
@@ -36,7 +36,7 @@
 
 1750475274 f:\projects\desempenho-avl-rubro-negra\colors-menu.h
 
-1750477872 source:f:\projects\desempenho-avl-rubro-negra\main.c
+1750695268 source:f:\projects\desempenho-avl-rubro-negra\main.c
 	<stdio.h>
 	<stdlib.h>
 	"dynamic-menu.h"
@@ -45,11 +45,11 @@
 	"arvoreAVL.h"
 	"arvoreLLRB.h"
 
-1750529978 f:\projects\desempenho-avl-rubro-negra\teste-desempenho.h
+1750652147 f:\projects\desempenho-avl-rubro-negra\teste-desempenho.h
 	"arvoreAVL.h"
 	"arvoreLLRB.h"
 
-1750530422 source:f:\projects\desempenho-avl-rubro-negra\teste-desempenho.c
+1750695635 source:f:\projects\desempenho-avl-rubro-negra\teste-desempenho.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

@@ -44,4 +44,8 @@ void print_funcionario(Funcionario func);
 
 void countingSort(Funcionario *funcionario, int numElementos);
 
+StatusOP vetorToCSV();
+
+StatusOP vetor_salvar_dados(Funcionario *vetor, char* header, int quantidade);
+
 #endif // TESTE_DESEMPENHO_H_INCLUDED

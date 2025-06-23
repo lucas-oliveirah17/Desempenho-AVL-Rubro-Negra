@@ -15,7 +15,7 @@ int call_menu_AVL(){
     ItemMenu itemMenu[] = {
         {.label = "Testar Desordenado", .action = wrapper_AVL_desordenado},
         {.label = "Testar Ordenado", .action = wrapper_AVL_ordenado},
-        {.label = "Testar Ambos", .action = wrapper_AVL_ambos},
+        {.label = "Testar ambos", .action = wrapper_AVL_ambos},
 
         {.label = "VOLTAR", .action = exit_menu}
     };
@@ -30,8 +30,16 @@ int call_menu_AVL(){
         gapMenu
     );
 
+    if(arquivo_nao_existe(ARQUIVO_DESORDENADO)){
+        disable_item(&menu, "Testar Desordenado");
+    }
+
     if(arquivo_nao_existe(ARQUIVO_ORDENADO)){
         disable_item(&menu, "Testar Ordenado");
+    }
+
+    if(arquivo_nao_existe(ARQUIVO_DESORDENADO)){
+        disable_item(&menu, "Testar ambos");
     }
 
     run_menu(&menu);
@@ -43,7 +51,7 @@ int call_menu_RN(){
     ItemMenu itemMenu[] = {
         {.label = "Testar Desordenado", .action = wrapper_LLRB_desordenado},
         {.label = "Testar Ordenado", .action = wrapper_LLRB_desordenado},
-        {.label = "Testar Ambos", .action = wrapper_LLRB_ambos},
+        {.label = "Testar ambos", .action = wrapper_LLRB_ambos},
 
         {.label = "VOLTAR", .action = exit_menu}
     };
@@ -58,8 +66,16 @@ int call_menu_RN(){
         gapMenu
     );
 
+    if(arquivo_nao_existe(ARQUIVO_DESORDENADO)){
+        disable_item(&menu, "Testar Desordenado");
+    }
+
     if(arquivo_nao_existe(ARQUIVO_ORDENADO)){
         disable_item(&menu, "Testar Ordenado");
+    }
+
+    if(arquivo_nao_existe(ARQUIVO_DESORDENADO)){
+        disable_item(&menu, "Testar ambos");
     }
 
     run_menu(&menu);
@@ -159,12 +175,12 @@ StatusOP testar_arvore(const char* nome_arquivo, Arvore arvore){
     system("PAUSE");
     printf(COLOR_RESET);
 
-    if(arquivo_nao_existe(ARQUIVO_ORDENADO)){
-        salvar_dados(arvore, estrutura, header, numeroFuncionario);
-        printf(TEXT_COLOR "\nArquivo ordenado gerado!\n");
-        system("PAUSE");
-        printf(COLOR_RESET);
-    }
+//    if(arquivo_nao_existe(ARQUIVO_ORDENADO)){
+//        salvar_dados(arvore, estrutura, header, numeroFuncionario);
+//        printf(TEXT_COLOR "\nArquivo ordenado gerado!\n");
+//        system("PAUSE");
+//        printf(COLOR_RESET);
+//    }
 
     liberar_arvore(arvore, estrutura);
 
@@ -294,4 +310,65 @@ void countingSort(Funcionario *funcionario, int quantidade) {
 
     free(contagem);
     free(ordenado);
+}
+
+StatusOP vetorToCSV(){
+    Funcionario *vetor = NULL;
+    int capacidade = 10000;
+    int tamanho = 0;
+
+    char header[256];
+    char linha[256];
+
+    enable_color_mode();
+
+    vetor = (Funcionario*) malloc(capacidade * sizeof(Funcionario));
+    if(!vetor) return OPERACAO_FALHOU;
+
+    FILE *arquivo = fopen(ARQUIVO_DESORDENADO, "r");
+
+    fgets(header, sizeof(header), arquivo);
+
+    while (fgets(linha, sizeof(linha), arquivo)) {
+        if(tamanho >= capacidade){
+            capacidade *=2;
+            vetor = (Funcionario*) realloc(vetor, capacidade * sizeof(Funcionario));
+        }
+
+        vetor[tamanho++] = carregar_funcionario(linha);
+    }
+
+    //vetor = realloc(vetor, tamanho * sizeof(Funcionario));
+
+    fclose(arquivo);
+
+    countingSort(vetor, tamanho);
+
+    vetor_salvar_dados(vetor, header, tamanho);
+
+    printf(TEXT_COLOR "\nArquivo ordenado com %d elementos criado\n", tamanho);
+    system("PAUSE");
+    printf(COLOR_RESET);
+
+    return OPERACAO_CONCLUIDA;
+}
+
+StatusOP vetor_salvar_dados(Funcionario *vetor, char* header, int quantidade){
+    FILE *arquivo;
+    arquivo = (fopen(ARQUIVO_ORDENADO, "w"));
+
+    fprintf(arquivo, "%s", header);
+
+    for(int i = 0; i < quantidade; i++){
+        fprintf(arquivo, "%d;%s;%d;%s;%s;%.2f\n",
+            vetor[i].codigo,
+            vetor[i].nome,
+            vetor[i].idade,
+            vetor[i].empresa,
+            vetor[i].departamento,
+            vetor[i].salario);
+    }
+
+    fclose(arquivo);
+    return OPERACAO_CONCLUIDA;
 }

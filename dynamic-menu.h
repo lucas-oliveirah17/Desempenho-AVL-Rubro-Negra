@@ -65,6 +65,10 @@ typedef struct Menu{
 Menu create_menu(const char* title, ItemMenu* item, int numberItems, int columns, int gap);
 void run_menu(Menu *menu);
 MenuOpStatus disable_item(Menu *menu, const char* label);
+MenuOpStatus enable_item(Menu *menu, const char* label);
+MenuOpStatus update_selectedIndex(Menu *menu);
 int exit_menu();
+
+void enable_color_mode();
 
 #endif // DYNAMIC_MENU_H_INCLUDED
