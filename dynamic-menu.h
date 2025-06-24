@@ -6,6 +6,15 @@
 #include <stdbool.h>
 
 #ifdef _WIN32
+    #undef _WIN32_WINNT
+    #define _WIN32_WINNT 0x0A00
+    #include <conio.h>
+    #include <windows.h>
+    #ifndef ENABLE_VIRTUAL_TERMINAL_PROCESSING
+        #define ENABLE_VIRTUAL_TERMINAL_PROCESSING 0x0004
+    #endif
+
+
     #include <conio.h>
     #include <windows.h>
 

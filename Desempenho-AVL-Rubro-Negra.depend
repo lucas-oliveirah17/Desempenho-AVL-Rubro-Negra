@@ -61,3 +61,67 @@
 
 1750528984 f:\projects\desempenho-avl-rubro-negra\funcionario.h
 
+1750711542 source:c:\projetos\ifsp\terceirosemestre\estruturasdedados02-ifsp\desempenho-avl-rubro-negra\arvoreavl.c
+	<stdio.h>
+	<stdlib.h>
+	"teste-desempenho.h"
+	"arvoreAVL.h"
+	"funcionario.h"
+
+1750711542 c:\projetos\ifsp\terceirosemestre\estruturasdedados02-ifsp\desempenho-avl-rubro-negra\teste-desempenho.h
+	"arvoreAVL.h"
+	"arvoreLLRB.h"
+
+1750711542 c:\projetos\ifsp\terceirosemestre\estruturasdedados02-ifsp\desempenho-avl-rubro-negra\arvoreavl.h
+	"funcionario.h"
+
+1750711542 c:\projetos\ifsp\terceirosemestre\estruturasdedados02-ifsp\desempenho-avl-rubro-negra\funcionario.h
+
+1750711542 c:\projetos\ifsp\terceirosemestre\estruturasdedados02-ifsp\desempenho-avl-rubro-negra\arvorellrb.h
+	"funcionario.h"
+
+1750711542 source:c:\projetos\ifsp\terceirosemestre\estruturasdedados02-ifsp\desempenho-avl-rubro-negra\arvorellrb.c
+	<stdio.h>
+	<stdlib.h>
+	"teste-desempenho.h"
+	"arvoreLLRB.h"
+	"funcionario.h"
+
+1750711542 source:c:\projetos\ifsp\terceirosemestre\estruturasdedados02-ifsp\desempenho-avl-rubro-negra\main.c
+	<stdio.h>
+	<stdlib.h>
+	"dynamic-menu.h"
+	"colors-menu.h"
+	"teste-desempenho.h"
+	"arvoreAVL.h"
+	"arvoreLLRB.h"
+
+1750808529 c:\projetos\ifsp\terceirosemestre\estruturasdedados02-ifsp\desempenho-avl-rubro-negra\dynamic-menu.h
+	<stdbool.h>
+	<conio.h>
+	<windows.h>
+	<conio.h>
+	<windows.h>
+	<termios.h>
+	<unistd.h>
+
+1750711542 c:\projetos\ifsp\terceirosemestre\estruturasdedados02-ifsp\desempenho-avl-rubro-negra\colors-menu.h
+
+1750711542 source:c:\projetos\ifsp\terceirosemestre\estruturasdedados02-ifsp\desempenho-avl-rubro-negra\teste-desempenho.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<sys/time.h>
+	"dynamic-menu.h"
+	"colors-menu.h"
+	"teste-desempenho.h"
+	"funcionario.h"
+
+1750711542 source:c:\projetos\ifsp\terceirosemestre\estruturasdedados02-ifsp\desempenho-avl-rubro-negra\dynamic-menu.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<stdbool.h>
+	"dynamic-menu.h"
+	"colors-menu.h"
+
